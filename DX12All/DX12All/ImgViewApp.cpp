@@ -4,6 +4,12 @@
 #include "../../Common/UploadBuffer.h"
 #include <DirectXColors.h>
 
+
+// refer:
+// https://www.3dgep.com/learning-directx-12-4/
+// https://github.com/elfstream/DirectX-Graphics-Samples
+// https://www.3dgep.com/
+
 using namespace DirectX;
 
 class CImgViewApp : public D3DApp
@@ -18,30 +24,28 @@ private:
     virtual void OnResize()override;
     virtual void Update(const GameTimer& gt)override;
     virtual void Draw(const GameTimer& gt)override;
-
 };
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
-				   PSTR cmdLine, int showCmd)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdLine, int showCmd)
 {
 	// Enable run-time memory check for debug builds.
 #if defined(DEBUG) | defined(_DEBUG)
-	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-    try
-    {
-        CImgViewApp theApp(hInstance);
-        if(!theApp.Initialize())
-            return 0;
+	try
+	{
+		CImgViewApp theApp(hInstance);
+		if (!theApp.Initialize())
+			return 0;
 
-        return theApp.Run();
-    }
-    catch(DxException& e)
-    {
-        MessageBox(nullptr, e.ToString().c_str(), L"HR Failed", MB_OK);
-        return 0;
-    }
+		return theApp.Run();
+	}
+	catch (DxException& e)
+	{
+		MessageBox(nullptr, e.ToString().c_str(), L"HR Failed", MB_OK);
+		return 0;
+	}
 }
 
 CImgViewApp::CImgViewApp(HINSTANCE hInstance)
@@ -57,7 +61,9 @@ bool CImgViewApp::Initialize()
 {
     if(!D3DApp::Initialize())
 		return false;
-		
+
+	// D3DXCreateTextureFromFile();
+	DirectX::CreateDDSTextureFromFile12();
 	return true;
 }
 
