@@ -403,8 +403,13 @@ bool D3DApp::InitMainWindow()
 	int width  = R.right - R.left;
 	int height = R.bottom - R.top;
 
+	int iScreenWidth = GetSystemMetrics(SM_CXSCREEN); 
+	int iScrenHeight = GetSystemMetrics(SM_CYSCREEN); 
+	int iPosX = (iScreenWidth - width) / 2;
+	int iPosY = (iScrenHeight - height) / 2;
+
 	mhMainWnd = CreateWindow(L"MainWnd", mMainWndCaption.c_str(), 
-		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, 0, 0, mhAppInst, 0); 
+		WS_OVERLAPPEDWINDOW, iPosX, iPosY, width, height, 0, 0, mhAppInst, 0); 
 	if( !mhMainWnd )
 	{
 		MessageBox(0, L"CreateWindow Failed.", 0, 0);

@@ -10,6 +10,10 @@
 // https://github.com/elfstream/DirectX-Graphics-Samples
 // https://www.3dgep.com/
 
+/*
+* The REFIID, or GUID, of the interface to a device can be obtained by using the __uuidof() macro. For example, __uuidof(ID3D12Device) will get the GUID of the interface to a device.
+*/
+
 using namespace DirectX;
 
 class CImgViewApp : public D3DApp
@@ -63,7 +67,7 @@ bool CImgViewApp::Initialize()
 		return false;
 
 	// D3DXCreateTextureFromFile();
-	DirectX::CreateDDSTextureFromFile12();
+	// DirectX::CreateDDSTextureFromFile12();
 	return true;
 }
 
@@ -97,9 +101,9 @@ void CImgViewApp::Draw(const GameTimer& gt)
     mCommandList->RSSetScissorRects(1, &mScissorRect);
 
     // Clear the back buffer and depth buffer.
-	mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightSteelBlue, 0, nullptr);
+	mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightYellow/*LightSteelBlue*/, 0, nullptr);
 	mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
-	
+
     // Specify the buffers we are going to render to.
 	auto curBackBufView = CurrentBackBufferView();
 	auto depStencilView = DepthStencilView();
