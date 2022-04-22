@@ -1,0 +1,72 @@
+stages:
+  - check_code
+  - build
+  - test
+  - deploy
+
+usetscan:
+  stage: check_code
+  script:
+    - chcp 65001
+    - .\scan.bat
+  artifacts:
+    name: ScanCppCode
+    paths:
+      - ScanResult
+    when: on_success
+  only:
+    - tags
+
+compile_task:
+  stage: build
+  script:
+    - chcp 65001
+    - echo $env:CI_JOB_ID
+    - echo $env:CI_COMMIT_REF_SLUG
+    - echo $env:CI_COMMIT_REF_NAME
+    - echo "Ready to Run Complile Script"
+    - .\vs_build.bat
+    - md Release\x64\bin
+    - md Release\x64\pdb
+    - xcopy .\DX12All\x64\Release\*.exe .\Release\x64\bin\
+    - xcopy .\DX12All\x64\Release\*.pdb .\Release\x64\pdb\
+    - md .\Output\x64\Release\Shaders
+    - md .\Output\Textures
+    - copy .\DX12All\x64\Release\XMVECTOR.exe .\Output\x64\Release
+    - copy .\DX12All\x64\Release\BlendDemo.exe .\Output\x64\Release
+    - copy .\DX12All\x64\Release\MyFirstGTestProj.exe .\Output\x64\Release
+    - echo "Copy Shaders"
+    - xcopy ".\Chapter 10 Blending\BlendDemo\Shaders" ".\Output\x64\Release\Shaders" /c /i
+    - echo "copy Textures"
+    - xcopy ".\Textures" ".\Output\Textures   " /c /i
+  cache: 
+    key: BinBuf
+    paths:
+      - Output\
+    policy: push
+  artifacts:
+    name: $env:CI_COMMIT_REF_NAME
+    paths:
+    - Release
+    when: on_success
+    expire_in: 1 mos
+  only:
+    - tags
+
+unit_test:
+  stage: test
+  cache:
+    key: BinBuf
+    policy: pull
+    paths:
+      - Output\
+  script:
+    - chcp 65001
+    - echo $PWD
+    - .\Output\x64\Release\MyFirstGTestProj.exe
+    - echo "Ready to Run XMVECTOR"
+    - .\Output\x64\Release\XMVECTOR.exe
+  dependencies:
+    - compile_task
+  only:
+    - tags

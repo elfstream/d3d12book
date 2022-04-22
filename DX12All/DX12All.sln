@@ -107,6 +107,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuatDemo", "..\Chapter 22 Q
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SkinnedMesh", "..\Chapter 23 Character Animation\SkinnedMesh\SkinnedMesh.vcxproj", "{6CFBC7B3-0F8A-4C64-AA5F-9051B208D67A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyFirstGTestProj", "MyFirstGTestProj\MyFirstGTestProj.vcxproj", "{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -361,6 +363,14 @@ Global
 		{6CFBC7B3-0F8A-4C64-AA5F-9051B208D67A}.Release|x64.Build.0 = Release|x64
 		{6CFBC7B3-0F8A-4C64-AA5F-9051B208D67A}.Release|x86.ActiveCfg = Release|Win32
 		{6CFBC7B3-0F8A-4C64-AA5F-9051B208D67A}.Release|x86.Build.0 = Release|Win32
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Debug|x64.ActiveCfg = Debug|x64
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Debug|x64.Build.0 = Debug|x64
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Debug|x86.ActiveCfg = Debug|Win32
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Debug|x86.Build.0 = Debug|Win32
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Release|x64.ActiveCfg = Release|x64
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Release|x64.Build.0 = Release|x64
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Release|x86.ActiveCfg = Release|Win32
+		{F51FBAD8-B0CB-41E3-9489-F81D05D73DB2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
